@@ -8,6 +8,5 @@ def main():
     return reversed_dict
 
 
-
 if __name__ == "__main__":
     print(main())
