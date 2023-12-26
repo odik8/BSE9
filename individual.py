@@ -14,45 +14,45 @@ def get_birthdate():
             print("Ошибка Неправильный формат даты. Попробуйте снова.")
 
 
-def add_person(contacts):
-    print("\nДобавление нового контакта:")
+def add_person(list_of_people):
+    print("\nДобавление нового человека:")
     last_name = input("Введите фамилию: ")
     first_name = input("Введите имя: ")
     phone_number = input("Введите номер телефона: ")
     birthdate = get_birthdate()
 
-    contact = {
+    person = {
         'фамилия': last_name,
         'имя': first_name,
         'номер телефона': phone_number,
         'дата рождения': birthdate
     }
 
-    contacts.append(contact)
-    contacts.sort(key=lambda x: x['дата рождения'])
+    list_of_people.append(person)
+    list_of_people.sort(key=lambda x: x['дата рождения'])
     print("Человек добавлен\n")
 
 
-def find_person_by_phone(contacts, phone):
-    for contact in contacts:
-        if contact['номер телефона'] == phone:
-            return contact
+def find_person_by_phone(list_of_people, phone):
+    for person in list_of_people:
+        if person['номер телефона'] == phone:
+            return person
     return None
 
 
-def print_person(contact):
-    if contact:
+def print_person(list_of_people):
+    if list_of_people:
         print("\nИнформация о человеке:")
-        print(f"Фамилия: {contact['фамилия']}")
-        print(f"Имя: {contact['имя']}")
-        print(f"Номер телефона: {contact['номер телефона']}")
-        print(f"Дата рождения: {contact['дата рождения'].strftime('%d.%m.%Y')}\n")
+        print(f"Фамилия: {list_of_people['фамилия']}")
+        print(f"Имя: {list_of_people['имя']}")
+        print(f"Номер телефона: {list_of_people['номер телефона']}")
+        print(f"Дата рождения: {list_of_people['дата рождения'].strftime('%d.%m.%Y')}\n")
     else:
         print("Человек не найден.\n")
 
 
 def main():
-    contacts = []
+    list_of_people = []
 
     while True:
         print("1. Добавить человека")
@@ -62,13 +62,13 @@ def main():
         choice = input("Выберите действие (1/2/3/4): ")
 
         if choice == '1':
-            add_person(contacts)
+            add_person(list_of_people)
         elif choice == '2':
             phone_to_find = input("Введите номер телефона для поиска: ")
-            found_contact = find_person_by_phone(contacts, phone_to_find)
-            print_person(found_contact)
+            found_person = find_person_by_phone(list_of_people, phone_to_find)
+            print_person(found_person)
         elif choice == '3':
-            for _ in contacts: print_person(_)
+            for _ in list_of_people: print_person(_)
         elif choice == '4':
             print("Программа завершена.")
             break
